@@ -17,6 +17,7 @@ import { ListComponent } from "./list/list.component";
     MatIconModule,
     BrowserAnimationsModule,
     MatCheckboxModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

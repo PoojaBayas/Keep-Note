@@ -1,17 +1,21 @@
 <div>
-    <h2>Keep Note</h2>
+  <h2>Keep Note</h2>
 
   <div class="row">
     <div class="col-xs-6 col-md-4">
       <div class="input-group">
         <input
           type="text"
-          class="form-control"
+          class="form-control textbox"
           placeholder="enter grocery items"
           [(ngModel)]="task"
         />
         <div class="input-group-btn">
-          <button class="btn btn-primary" type="button" (click)="onClick()">
+          <button
+            class="btn btn-outline-danger btn-sm"
+            type="button"
+            (click)="onClick()"
+          >
             <mat-icon>done</mat-icon>
           </button>
         </div>
@@ -23,19 +27,25 @@
 
   <ul class="list-group">
     <li *ngFor="let task of tasks" class="list-group-item">
-      <mat-checkbox class='checkbox'(change)="OnChange(this.task.name ,$event)">{{ task.name }}</mat-checkbox>
+      <mat-checkbox
+        class="checkbox"
+        (change)="OnChange(this.task.name, $event)"
+        >{{ task.name }}</mat-checkbox
+      >
     </li>
   </ul>
 </div>
 
-
 <div>
-<hr>
-<ul class="list-group"id='Test' style="display: none;">
-    <li *ngFor="let checkedItem of checkedItems" class="list-group-item"  >
-      <mat-checkbox >{{ checkedItem}}</mat-checkbox>
+  <hr />
+
+  <ul class="list-group" id="Test" style="display: none;">
+    <h5>Checked Items</h5>
+    <li *ngFor="let checkedItem of checkedItems" class="list-group-item">
+      <mat-checkbox
+        ><del>{{ checkedItem }}</del></mat-checkbox
+      >
     </li>
   </ul>
-<!-- <div>{{checkedItem}}</div> -->
-
+  <!-- <div>{{checkedItem}}</div> -->
 </div>
