@@ -5,13 +5,19 @@ import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import "hammerjs";
 import { MatIconModule } from "@angular/material/icon";
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AppComponent } from "./app.component";
 import { ListComponent } from "./list/list.component";
 
 @NgModule({
   declarations: [AppComponent, ListComponent],
-  imports: [BrowserModule, FormsModule, MatIconModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
