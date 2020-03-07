@@ -1,3 +1,19 @@
-.textbox{
+.textbox {
   margin-right: 5px;
+}
+.container {
+  align-items: center;
+}
+.inputBoxContent {
+  text-align: center;
+}
+.row {
+  display: inherit;
+}
+#h2id {
+  text-align: center;
+  margin-bottom: 2.5rem; 
+}
+.deletebtn{
+  float: right;
 }
