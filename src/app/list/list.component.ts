@@ -10,28 +10,35 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 })
 export class ListComponent implements OnInit {
   checkedItems = [];
+
   checkedItem: string;
   task: string;
-
-
   tasks = [];
 
   onClick() {
-    
     this.tasks.push({ name: this.task });
-    // console.log(this.task.indexOf);
+
     this.task = "";
   }
-  OnChange(test, $event) {
+  OnChange(listItem, $event) {
     if ($event.checked == true) {
-      const index = this.tasks.findIndex(item => item.name === test);
-      console.log("index is=" + index);
-      this.checkedItems.push(test);
+      const index = this.tasks.findIndex(item => item.name === listItem);
+
+      this.checkedItems.push(listItem);
       this.tasks.splice(index, 1);
-      document.getElementById("Test").style.display = "block";
+      document.getElementById("CheckListBlock").style.display = "block";
     }
 
     //MatCheckboxChange {checked,MatCheckbox}
+  }
+  OnindeterminateChange(listItem, $event) {
+    if ($event.checked == false) {
+      const index = this.checkedItems.findIndex(item => item === listItem);
+
+      this.tasks.push({ name: listItem });
+
+      this.checkedItems.splice(index, 1);
+    }
   }
   constructor() {}
 

@@ -3,23 +3,28 @@
 
   <div class="row">
     <div class="col-xs-6 col-md-4">
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control textbox"
-          placeholder="enter grocery items"
-          [(ngModel)]="task"
-        />
-        <div class="input-group-btn">
-          <button
-            class="btn btn-outline-danger btn-sm"
-            type="button"
-            (click)="onClick()"
-          >
-            <mat-icon>done</mat-icon>
-          </button>
+      
+        <div class="input-group">
+          <input
+            id="myInput"
+            type="text"
+            class="form-control textbox"
+            placeholder="enter grocery items"
+            [(ngModel)]="task"
+            onkeyup=""
+          />
+          <div class="input-group-btn">
+            <button
+              id="myBtn"
+              class="btn btn-outline-danger btn-sm"
+              type="submit"
+              (click)="onClick()"
+            >
+              <mat-icon>done</mat-icon>
+            </button>
+          </div>
         </div>
-      </div>
+      
     </div>
   </div>
 
@@ -39,10 +44,10 @@
 <div>
   <hr />
 
-  <ul class="list-group" id="Test" style="display: none;">
+  <ul class="list-group" id="CheckListBlock" style="display: none;">
     <h5>Checked Items</h5>
     <li *ngFor="let checkedItem of checkedItems" class="list-group-item">
-      <mat-checkbox
+      <mat-checkbox indeterminate=“true” (change)="OnindeterminateChange(this.checkedItem, $event)"
         ><del>{{ checkedItem }}</del></mat-checkbox
       >
     </li>
