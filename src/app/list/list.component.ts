@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-list",
@@ -15,10 +16,19 @@ export class ListComponent implements OnInit {
   task: string;
   tasks = [];
 
-  onClick() {
-    this.tasks.push({ name: this.task });
+  inputName = new FormControl("", [Validators.minLength(3)]);
 
-    this.task = "";
+  delete(deleteItem) {
+    const index = this.tasks.findIndex(item => item.name === deleteItem);
+
+    this.tasks.splice(index, 1);
+  }
+
+  onClick() {
+    if (this.task.length > 2) {
+      this.tasks.push({ name: this.task });
+      this.task = "";
+    }
   }
   OnChange(listItem, $event) {
     if ($event.checked == true) {

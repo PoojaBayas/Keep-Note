@@ -3,40 +3,43 @@
 
   <div class="row">
     <div class="col-xs-6 col-md-4">
-      
-        <div class="input-group">
-          <input
-            id="myInput"
-            type="text"
-            class="form-control textbox"
-            placeholder="enter grocery items"
-            [(ngModel)]="task"
-            onkeyup=""
-          />
-          <div class="input-group-btn">
-            <button
-              id="myBtn"
-              class="btn btn-outline-danger btn-sm"
-              type="submit"
-              (click)="onClick()"
-            >
-              <mat-icon>done</mat-icon>
-            </button>
-          </div>
+      <div class="input-group">
+        <input
+          id="myInput"
+          type="text"
+          class="form-control textbox"
+          required
+          minlength="2"
+          placeholder="enter grocery items"
+          [(ngModel)]="task"
+          [formControl]="inputName"
+        />
+        <div class="input-group-btn">
+          <button
+            id="myBtn"
+            class="btn btn-outline-danger btn-sm"
+            type="submit"
+            (click)="onClick()"
+          >
+            <mat-icon>done</mat-icon>
+          </button>
         </div>
-      
+      </div>
     </div>
   </div>
-
+  <mat-hint *ngIf="!task">Type Something</mat-hint>
+  <mat-hint *ngIf="inputName.hasError('minlength')">Type more than 2</mat-hint>
   <br />
+  <br/>
 
   <ul class="list-group">
-    <li *ngFor="let task of tasks" class="list-group-item">
+    <li *ngFor="let task of tasks" class="list-group-item list-group-item-action">
       <mat-checkbox
         class="checkbox"
         (change)="OnChange(this.task.name, $event)"
         >{{ task.name }}</mat-checkbox
       >
+      <button class="btn btn-light" (click)="delete(this.task)"> <mat-icon>close</mat-icon></button>
     </li>
   </ul>
 </div>
@@ -46,11 +49,12 @@
 
   <ul class="list-group" id="CheckListBlock" style="display: none;">
     <h5>Checked Items</h5>
-    <li *ngFor="let checkedItem of checkedItems" class="list-group-item">
-      <mat-checkbox indeterminate=“true” (change)="OnindeterminateChange(this.checkedItem, $event)"
+    <li *ngFor="let checkedItem of checkedItems" class="list-group-item list-group-item-action">
+      <mat-checkbox
+        indeterminate="“true”"
+        (change)="OnindeterminateChange(this.checkedItem, $event)"
         ><del>{{ checkedItem }}</del></mat-checkbox
       >
     </li>
   </ul>
-  <!-- <div>{{checkedItem}}</div> -->
 </div>
