@@ -1,8 +1,8 @@
 <div class="container">
-  <h2 id='h2id'>Keep Note</h2>
-  <div class='inputBoxContent'>
+  <h2 id="h2id">Keep Note</h2>
+  <div class="inputBoxContent">
     <div class="row " style="display: inherit">
-      <div class="col-xs-6 col-md-4 "style="display:inline-block;">
+      <div class="col-xs-6 col-md-4 " style="display:inline-block;">
         <div class="input-group">
           <input
             id="myInput"
@@ -10,16 +10,16 @@
             class="form-control textbox"
             required
             minlength="2"
-            placeholder="enter grocery items"
+            placeholder="Enter grocery items"
             [(ngModel)]="task"
-            [formControl]="inputName"
+            (keyup.enter)="onAddItem()"
           />
           <div class="input-group-btn">
             <button
               id="myBtn"
               class="btn btn-outline-danger btn-sm"
               type="submit"
-              (click)="onClick()"
+              (click)="onAddItem()"
             >
               <mat-icon>done</mat-icon>
             </button>
@@ -28,10 +28,7 @@
       </div>
     </div>
     <!-- Input Validation -->
-    <mat-hint *ngIf="!task">Start Listing ...</mat-hint>
-    <mat-hint *ngIf="inputName.hasError('minlength')"
-      >Type more than 2</mat-hint
-    >
+    <mat-error *ngIf="!task">{{ errMsg }}</mat-error>
   </div>
   <br />
   <br />
@@ -41,33 +38,38 @@
       *ngFor="let task of tasks"
       class="list-group-item list-group-item-action"
     >
-      <mat-checkbox
-        class="checkbox"
-        (change)="OnChange(this.task.name, $event)"
-        >{{ task.name }}</mat-checkbox
+      <mat-checkbox (change)="OnChange(this.task.name, $event)">
+        <span class="checkbox">{{ task.name }}</span>
+      </mat-checkbox>
+      <button
+        class="btn btn-light deletebtn"
+        (click)="deleteUncheckedItem(this.task)"
       >
-      <button class="btn btn-light deletebtn" (click)="delete(this.task)">
-        <span><mat-icon>close</mat-icon></span>
+        <mat-icon>close</mat-icon>
       </button>
     </li>
   </ul>
 
-  <div>
-    <hr />
-    <!-- Display checked Item -->
-    <ul class="list-group" id="CheckListBlock" style="display: none;">
-      <mat-icon matPrefix>expand_more</mat-icon
-      ><span>Checked Items</span>
-      <li
-        *ngFor="let checkedItem of checkedItems"
-        class="list-group-item list-group-item-action"
+  <hr />
+  <!-- Display checked Item -->
+  <ul class="list-group" id="CheckListBlock" style="display: none;">
+    <div class="tag">Archived Items</div>
+    <li
+      *ngFor="let checkedItem of checkedItems"
+      class="list-group-item list-group-item-action"
+    >
+      <mat-checkbox
+        id="checkbox"
+        indeterminate="“true”"
+        (change)="OnindeterminateChange(this.checkedItem, $event)"
+        ><del>{{ checkedItem }}</del></mat-checkbox
       >
-        <mat-checkbox
-          indeterminate="“true”"
-          (change)="OnindeterminateChange(this.checkedItem, $event)"
-          ><del>{{ checkedItem }}</del></mat-checkbox
-        >
-      </li>
-    </ul>
-  </div>
+      <button
+        class="btn btn-light deletebtn"
+        (click)="deleteCheckedItem(this.checkedItem)"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </li>
+  </ul>
 </div>
