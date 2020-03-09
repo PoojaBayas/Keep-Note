@@ -62,7 +62,9 @@
         id="checkbox"
         indeterminate="“true”"
         (change)="OnindeterminateChange(this.checkedItem, $event)"
-        ><del>{{ checkedItem }}</del></mat-checkbox
+        ><span class="checkbox"
+          ><del>{{ checkedItem }}</del></span
+        ></mat-checkbox
       >
       <button
         class="btn btn-light deletebtn"

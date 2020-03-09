@@ -26,6 +26,8 @@ export class ListComponent implements OnInit {
       this.errMsg = "Please enter your note";
     }
   }
+  
+
   //CheckedItem Display in checked List(bottom  content)
   OnChange(listItem, $event) {
     if ($event.checked == true) {
@@ -36,23 +38,25 @@ export class ListComponent implements OnInit {
       document.getElementById("CheckListBlock").style.display = "flex";
     }
   }
+
+   // Unchecked Items  put back to top list
+   OnindeterminateChange(Item, $event) {
+    console.log('clicked item='+Item)
+    if ($event.checked == false) {
+      const index = this.checkedItems.findIndex(item => item === Item);
+
+      this.tasks.push({ name: Item });
+
+      this.checkedItems.splice(index, 1);
+    }
+  }
   //delete Unchecked Item (top content)
   deleteUncheckedItem(deleteItem) {
     const index = this.tasks.findIndex(item => item.name === deleteItem);
     this.tasks.splice(index, 1);
   }
 
-  // Unchecked Items  put back to top list
-  OnindeterminateChange(listItem, $event) {
-    if ($event.checked == false) {
-      const index = this.checkedItems.findIndex(item => item === listItem);
-
-      this.tasks.push({ name: listItem });
-
-      this.checkedItems.splice(index, 1);
-    }
-  }
-
+ 
   //delete Checked Item
   deleteCheckedItem(deleteItem) {
     const index = this.tasks.findIndex(item => item.name === deleteItem);
