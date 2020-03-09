@@ -38,12 +38,12 @@
       *ngFor="let task of tasks"
       class="list-group-item list-group-item-action"
     >
-      <mat-checkbox (change)="OnChange(this.task.name, $event)">
+      <mat-checkbox (change)="OnAddToArchivedList(this.task.name, $event)">
         <span class="checkbox">{{ task.name }}</span>
       </mat-checkbox>
       <button
         class="btn btn-light deletebtn"
-        (click)="deleteUncheckedItem(this.task)"
+        (click)="deleteListItem(this.task)"
       >
         <mat-icon>close</mat-icon>
       </button>
@@ -51,24 +51,24 @@
   </ul>
 
   <hr />
-  <!-- Display checked Item -->
+  <!-- Display Archived Item -->
   <ul class="list-group" id="CheckListBlock" style="display: none;">
-    <div class="tag">Archived Items</div>
+    <div class="Archivedtag">Archived Items</div>
     <li
       *ngFor="let checkedItem of checkedItems"
       class="list-group-item list-group-item-action"
     >
       <mat-checkbox
-        id="checkbox"
-        indeterminate="“true”"
-        (change)="OnindeterminateChange(this.checkedItem, $event)"
-        ><span class="checkbox"
-          ><del>{{ checkedItem }}</del></span
-        ></mat-checkbox
+        checked="true" 
+        (change)=" OnRemoveFromArchivedList(this.checkedItem,$event)"
+      >
+        <span class="checkbox"
+          ><del>{{ checkedItem }}</del>
+        </span></mat-checkbox
       >
       <button
         class="btn btn-light deletebtn"
-        (click)="deleteCheckedItem(this.checkedItem)"
+        (click)="deleteArchivedItem(checkedItem)"
       >
         <mat-icon>close</mat-icon>
       </button>

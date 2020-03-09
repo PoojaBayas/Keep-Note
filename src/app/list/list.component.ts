@@ -11,7 +11,7 @@ import { FormControl, Validators } from "@angular/forms";
 })
 export class ListComponent implements OnInit {
   checkedItems = [];
-  checkedItem: string;
+  //checkedItem: string;
   task: string;
   tasks = [];
   errMsg: string = "";
@@ -26,22 +26,20 @@ export class ListComponent implements OnInit {
       this.errMsg = "Please enter your note";
     }
   }
-  
 
-  //CheckedItem Display in checked List(bottom  content)
-  OnChange(listItem, $event) {
+  //CheckedItem Display in Archived List(bottom  content)
+  OnAddToArchivedList(listItem, $event) {
     if ($event.checked == true) {
       const index = this.tasks.findIndex(item => item.name === listItem);
 
-      this.checkedItems.push(listItem);
+      this.checkedItems.push(JSON.parse(JSON.stringify(listItem)));
       this.tasks.splice(index, 1);
       document.getElementById("CheckListBlock").style.display = "flex";
     }
   }
 
-   // Unchecked Items  put back to top list
-   OnindeterminateChange(Item, $event) {
-    console.log('clicked item='+Item)
+  // Archived Items  put back to top list
+  OnRemoveFromArchivedList(Item, $event) {
     if ($event.checked == false) {
       const index = this.checkedItems.findIndex(item => item === Item);
 
@@ -50,15 +48,14 @@ export class ListComponent implements OnInit {
       this.checkedItems.splice(index, 1);
     }
   }
-  //delete Unchecked Item (top content)
-  deleteUncheckedItem(deleteItem) {
+  //delete List Item
+  deleteListItem(deleteItem) {
     const index = this.tasks.findIndex(item => item.name === deleteItem);
     this.tasks.splice(index, 1);
   }
 
- 
-  //delete Checked Item
-  deleteCheckedItem(deleteItem) {
+  //delete Archived Item
+  deleteArchivedItem(deleteItem) {
     const index = this.tasks.findIndex(item => item.name === deleteItem);
     this.checkedItems.splice(index, 1);
   }
