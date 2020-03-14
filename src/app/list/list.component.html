@@ -1,4 +1,5 @@
 <div class="container">
+  <div class='toolbar'>
   <h2 id="h2id">Keep Note</h2>
   <div class="inputBoxContent">
     <div class="row " style="display: inherit">
@@ -10,7 +11,7 @@
             class="form-control textbox"
             required
             minlength="2"
-            placeholder="Enter grocery items"
+            placeholder="Enter items"
             [(ngModel)]="task"
             (keyup.enter)="onAddItem()"
           />
@@ -32,6 +33,7 @@
   </div>
   <br />
   <br />
+</div>
   <!-- listing the entered Items -->
   <ul class="list-group">
     <li
@@ -59,8 +61,8 @@
       class="list-group-item list-group-item-action"
     >
       <mat-checkbox
-        checked="true" 
-        (change)=" OnRemoveFromArchivedList(this.checkedItem,$event)"
+        checked="true"
+        (change)="OnRemoveFromArchivedList(this.checkedItem, $event)"
       >
         <span class="checkbox"
           ><del>{{ checkedItem }}</del>

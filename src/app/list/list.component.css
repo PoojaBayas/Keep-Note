@@ -4,16 +4,34 @@
 .inputBoxContent {
   text-align: center;
 }
+.toolbar {
+  background-image: url("../../assets/Image/pink.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
 .row {
   display: inherit;
 }
 #h2id {
   text-align: center;
   margin-bottom: 2.5rem;
+  padding-top: 15px;
+  color: white;
 }
 
 .textbox {
   margin-right: 5px;
+}
+#myBtn {
+  color: white;
+  background-color: #d3979b;
+  border-color: #bc5e65;
+}
+#myBtn:hover {
+
+  background-color: #bc5e65;
+  
 }
 
 .deletebtn {
