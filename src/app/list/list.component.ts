@@ -32,7 +32,7 @@ export class ListComponent implements OnInit {
     if ($event.checked == true) {
       const index = this.tasks.findIndex(item => item.name === listItem);
 
-      this.checkedItems.push(JSON.parse(JSON.stringify(listItem)));
+      this.checkedItems.push(listItem);
       this.tasks.splice(index, 1);
       document.getElementById("CheckListBlock").style.display = "flex";
     }
@@ -50,13 +50,15 @@ export class ListComponent implements OnInit {
   }
   //delete List Item
   deleteListItem(deleteItem) {
+    console.log("deledted item=" + deleteItem);
     const index = this.tasks.findIndex(item => item.name === deleteItem);
     this.tasks.splice(index, 1);
   }
 
   //delete Archived Item
   deleteArchivedItem(deleteItem) {
-    const index = this.tasks.findIndex(item => item.name === deleteItem);
+    const index = this.checkedItems.findIndex(item => item === deleteItem);
+
     this.checkedItems.splice(index, 1);
   }
 
