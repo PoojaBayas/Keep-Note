@@ -50,7 +50,7 @@ export class ListComponent implements OnInit {
   }
   //delete List Item
   deleteListItem(deleteItem) {
-    console.log("deledted item=" + deleteItem);
+    
     const index = this.tasks.findIndex(item => item.name === deleteItem);
     this.tasks.splice(index, 1);
   }
