@@ -1,39 +1,39 @@
 <div class="container">
-  <div class='toolbar'>
-  <h2 id="h2id">Keep Note</h2>
-  <div class="inputBoxContent">
-    <div class="row " style="display: inherit">
-      <div class="col-xs-6 col-md-4 " style="display:inline-block;">
-        <div class="input-group">
-          <input
-            id="myInput"
-            type="text"
-            class="form-control textbox"
-            required
-            minlength="2"
-            placeholder="Enter items"
-            [(ngModel)]="task"
-            (keyup.enter)="onAddItem()"
-          />
-          <div class="input-group-btn">
-            <button
-              id="myBtn"
-              class="btn btn-outline-danger btn-sm"
-              type="submit"
-              (click)="onAddItem()"
-            >
-              <mat-icon>done</mat-icon>
-            </button>
+  <div class="toolbar">
+    <h2 id="h2id">Keep Note</h2>
+    <div class="inputBoxContent">
+      <div class="row " style="display: inherit">
+        <div class="col-xs-6 col-md-4 " style="display:inline-block;">
+          <div class="input-group">
+            <input
+              id="myInput"
+              type="text"
+              class="form-control textbox"
+              required
+              minlength="2"
+              placeholder="Enter items"
+              [(ngModel)]="task"
+              (keyup.enter)="onAddItem()"
+            />
+            <div class="input-group-btn">
+              <button
+                id="myBtn"
+                class="btn btn-outline-danger btn-sm"
+                type="submit"
+                (click)="onAddItem()"
+              >
+                <mat-icon>done</mat-icon>
+              </button>
+            </div>
           </div>
         </div>
       </div>
+      <!-- Input Validation -->
+      <mat-error *ngIf="!task">{{ errMsg }}</mat-error>
     </div>
-    <!-- Input Validation -->
-    <mat-error *ngIf="!task">{{ errMsg }}</mat-error>
+    <br />
+    <br />
   </div>
-  <br />
-  <br />
-</div>
   <!-- listing the entered Items -->
   <ul class="list-group">
     <li
@@ -45,7 +45,7 @@
       </mat-checkbox>
       <button
         class="btn btn-light deletebtn"
-        (click)="deleteListItem(this.task)"
+        (click)="deleteListItem(this.task.name)"
       >
         <mat-icon>close</mat-icon>
       </button>
